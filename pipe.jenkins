@@ -1,0 +1,20 @@
+#!groovy
+
+pipeline {
+  agent {
+    lebel 'master'
+    }
+  options {
+    timestamps()
+    }
+    stages {
+      stage("Stage1"){
+      echo '==========Building==========='
+      sh 'docker build -t ipscript2 .'
+      }
+      stage("Stage2"){
+      echo '==========Running============'
+      sh 'docker run -d ipscript2'
+      }
+    }
+}
