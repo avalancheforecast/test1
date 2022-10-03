@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-  agent any
+  agent { node ("precise") }
   options {
     buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
     timestamps()
