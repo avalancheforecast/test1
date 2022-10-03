@@ -2,19 +2,23 @@
 
 pipeline {
   agent {
-    lebel 'master'
+    label 'master'
     }
   options {
     timestamps()
     }
     stages {
       stage("Stage1"){
-      echo '==========Building==========='
-      sh 'docker build -t ipscript2 .'
+        steps {
+          echo '==========Building==========='
+          sh 'docker build -t ipscript2 .'
+          }
       }
       stage("Stage2"){
-      echo '==========Running============'
-      sh 'docker run -d ipscript2'
+        steps {
+          echo '==========Running============'
+          sh 'docker run -d ipscript2'
+        }
       }
     }
 }
