@@ -25,8 +25,8 @@ pipeline {
           withCredentials([string(credentialsId: 'botSecret', variable: 'TOKEN'), string(credentialsId: 'devopschat', variable: 'CHAT_ID')]) {
           sh  ("""
               curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown
--d '<span style="color:blue">some *blue* text</span>'
--d text='*${env.JOB_NAME}*               
+-d text='*${env.JOB_NAME}*
+*Commit message* _${github.event.commits[0].message}_
 *Branch*${env.GIT_BRANCH}  
 *Build* : `Проверка алертов`'
           """)
