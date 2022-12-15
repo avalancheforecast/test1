@@ -28,7 +28,7 @@ pipeline {
               
 *Branch*${env.GIT_BRANCH}  
 *Build* : `Проверка алертов`'
--d <span style="color:blue">some *blue* text</span>
+-d '<span style="color:blue">some *blue* text</span>'
           """)
           }
           }
