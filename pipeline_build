@@ -24,9 +24,11 @@ pipeline {
           failure {
           withCredentials([string(credentialsId: 'botSecret', variable: 'TOKEN'), string(credentialsId: 'alerttest', variable: 'CHAT_ID')]) {
           sh  ("""
-              curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC  *Branch*: ${env.GIT_BRANCH} *Build* :
+              curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=html
+              <a href='http://172.17.5.165:8080/job/alert_test/${BUILD_NUMBER}/console'>Логи</a>
+              -d text='*${env.JOB_NAME}* : POC  *Branch*: ${env.GIT_BRANCH} *Build* :
 ❌Неудача❌
-`Вот, посмотри, как все навернулось:` http://172.17.5.165:8080/job/alert_test/${BUILD_NUMBER}/console'
+Вот, посмотри, как все навернулось: http://172.17.5.165:8080/job/alert_test/${BUILD_NUMBER}/console'
           """)
           }
           }
